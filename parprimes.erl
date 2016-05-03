@@ -1,4 +1,4 @@
--module(primes).
+-module(parprimes).
 -compile(export_all).
 
 is_prime(Num) -> is_prime_helper(Num, 2).
