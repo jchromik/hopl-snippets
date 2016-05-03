@@ -1,6 +1,10 @@
 -module(parprimes).
 -import(primes, [list_primes/3]).
--compile(export_all).
+-export([
+  generator/4,
+  merger/2,
+  start/3
+]).
 
 generator(Merger, Begin, End, Step) ->
       Merger ! primes:list_primes(Begin, End, Step).
