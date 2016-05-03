@@ -1,15 +1,6 @@
 -module(parprimes).
+-import(primes, [list_primes/3]).
 -compile(export_all).
-
-is_prime(Num) -> is_prime_helper(Num, 2).
-
-is_prime_helper(Num, _) when Num < 2 -> false;
-is_prime_helper(Num, Curr) when Curr > Num div 2 -> true;
-is_prime_helper(Num, Curr) when Num rem Curr =/= 0 -> is_prime_helper(Num, Curr+1);
-is_prime_helper(Num, Curr) when Num rem Curr == 0 -> false.
-
-list_primes(Begin, End, Step) ->
-  lists:filter(fun is_prime/1, lists:seq(Begin, End, Step)).
 
 prime_gen_loop() ->
   receive
@@ -17,7 +8,7 @@ prime_gen_loop() ->
       From ! exited;
     {Merger, {Begin, End, Step}} ->
       io:format("GENERATOR: got {~p, {~p, ~p, ~p}}~n", [Merger, Begin, End, Step]),
-      Merger ! {self(), list_primes(Begin, End, Step)},
+      Merger ! {self(), primes:list_primes(Begin, End, Step)},
       prime_gen_loop()
   end.
 
