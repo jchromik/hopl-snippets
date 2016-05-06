@@ -10,14 +10,14 @@ generator(Merger, Begin, End, Step) ->
       Merger ! primes:list_primes(Begin, End, Step).
 
 merger(From, Max) ->
-  merger(From, 0, Max, [], os:timestamp()).
+  merger(From, 0, Max, []).
 
-merger(From, Counter, Max, List, StartTime) ->
+merger(From, Counter, Max, List) ->
   receive
     Result when Counter >= Max-1 ->
-      From ! {List ++ Result, timer:now_diff(os:timestamp(), StartTime)};
+      From ! List ++ Result;
     Result ->
-      merger(From, Counter+1, Max, List ++ Result, StartTime)
+      merger(From, Counter+1, Max, List ++ Result)
   end.
 
 start_merger(Num) ->
@@ -33,8 +33,8 @@ start_generators(Merger, Begin, End, Num, Counter) ->
 
 loop() ->
   receive
-    {Result, Duration} ->
-      {Result, Duration}
+    Result ->
+      Result
   end.
 
 start(Begin, End, Num) ->
