@@ -10,7 +10,7 @@
 
 csv([]) -> ok;
 csv([{N,Time,Tag}|Tail]) ->
-  io:format("~p;~p;~p~n",[N,Time,Tag]),
+  io:format("~p,~p,~p~n",[N,Time,Tag]),
   csv(Tail).
 
 multi(Min,Max,Step,Num) ->

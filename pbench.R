@@ -8,7 +8,7 @@ library(ggplot2)
 # N    ... Array size whereas the array contains all integer values from 2 to N
 # Time ... Duration of the computation in microseconds
 # Tag  ... Computation took place in parallel or sequential
-pbench  <- read.csv("./pbench_5000_10000_500_50.csv", sep=";")
+pbench  <- read.csv("./pbench_5000_10000_500_50.csv", sep=",")
 
 # convert N to factor
 pbench$N <- as.factor(pbench$N)
