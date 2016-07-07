@@ -1,0 +1,11 @@
+The screencasts shows two different implementations for finding primes in a range of integers.
+On the left hand side, the sequential implementation (seqprimes) is used.
+On the right hand side, the parallel implementation (parprimes) is used. 
+
+Firstly, the Erlang shell is started within both unix shells using the command "erl".
+Secondly, the modules for finding primes are loaded using the Erlang shell commands "c(seqprimes)" and "c(parprimes)".
+Finally, the computations is started. The algorithms have to find all prime numbers between 1 and 100000 (first and second argument of the funtion call).
+For the parallel implementation, the third argument states how many actors should be used (11 in this case).
+
+The screencast shows that the parallel implementation is about two times faster than the sequential one.
+The computation took place on a quad-core CPU.
